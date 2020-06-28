@@ -3,7 +3,6 @@
 version: "3"
 services:
   vue_webapp:
-    container_name: vue_webapp
     environment:
       - NODE_ENV=development
     build:
@@ -17,7 +16,6 @@ services:
     restart: always
 
   sanic_server:
-    container_name: sanic_server
     environment:
       - ENV=DEV
     build:
