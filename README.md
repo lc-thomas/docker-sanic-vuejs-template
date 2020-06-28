@@ -5,7 +5,7 @@ This template includes docker, sanic and vuejs.
 ## Components
 
 ### Server
-PYthon3
+Python3
 Sanic
 
 ### Client
