@@ -1,0 +1,13 @@
+@import './assets/style/variables.scss';
+
+.ui-select__search-input{
+  background-color: $secondary-bg-color !important;
+}
+
+.ui-select-option{
+  background-color: $secondary-bg-color !important; 
+}
+
+.ui-select__no-results{
+  background-color: $secondary-bg-color !important;  
+}

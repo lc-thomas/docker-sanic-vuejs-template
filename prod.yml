@@ -1,0 +1,31 @@
+version: "3"
+services:
+  vue_webapp_build:
+    container_name: vue_webapp_build
+    environment:
+      - NODE_ENV=production
+    build:
+      context: .
+      dockerfile: build/vue_webapp.df
+    command: sh build_client.sh
+    volumes:
+      - ./sources/vue_webapp:/vue_webapp
+
+  sanic_server:
+    container_name: sanic_server
+    environment:
+      - ENV=PROD
+    build:
+      context: .
+      dockerfile: build/sanic_server.df
+    command: sh start_server.sh
+    ports:
+      - 127.0.0.1:8080:8080
+    volumes:
+      # There was an issue mounting directly the vue_webapp/dist directory.
+      # It seems that when vue app is built, the dist folder is removed then recreated, which breaks the volume here.
+      # As a workaround, a dist_patch folder has been created, and when the build is done we copy the dist files in it.
+      # See ./sources/vue_webapp/build_client.sh
+      - ./sources/vue_webapp/dist_patch:/vue_webapp_dist
+      - ./sources/sanic_server:/sanic_server
+    restart: always

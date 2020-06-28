@@ -1,0 +1,33 @@
+# to work in dev environement, open your browser at http://127.0.0.1:8081
+
+version: "3"
+services:
+  vue_webapp:
+    container_name: vue_webapp
+    environment:
+      - NODE_ENV=development
+    build:
+      context: .
+      dockerfile: build/vue_webapp.df
+    command: sh start_client.sh
+    ports:
+      - 127.0.0.1:80:80
+    volumes:
+      - ./sources/vue_webapp:/vue_webapp
+    restart: always
+
+  sanic_server:
+    container_name: sanic_server
+    environment:
+      - ENV=DEV
+    build:
+      context: .
+      dockerfile: build/sanic_server.df
+    command: sh start_server.sh
+    ports:
+      - 127.0.0.1:8080:8080
+    expose:
+      - 8080
+    volumes:
+      - ./sources/sanic_server:/sanic_server
+    restart: always
