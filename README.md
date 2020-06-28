@@ -46,4 +46,6 @@ Examples
 - More examples
 - Multilingual
   https://panter.github.io/vue-i18next/ (?)
-...
+- Server side stuff like sessions, messaging client (for rabbitMQ or Redis), db client
+- Websockets
+- ...
